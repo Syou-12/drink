@@ -55,6 +55,8 @@ public function messages() {
         'zaiko.max' => ':attributeは:max字以内で入力してください。',
         'maker.required' => ':attributeは必須項目です。',
         'maker.max' => ':attributeは:max字以内で入力してください。',
+        'coment.required' => ':attributeは必須項目です。',
+        'coment.max' => ':attributeは:max字以内で入力してください。',
     ];
 }
 }

@@ -2,6 +2,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ asset('css/style.css')  }}" >
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
     body {
@@ -13,7 +14,7 @@
             sans-serif;
     }
     </style>
-
+ </head>
 @extends('layouts.app')
 @section('content')
 <h1>詳細確認</h1>
@@ -23,8 +24,12 @@
     <td>{{ $drink->id }}</td>
   </tr>
   <tr>
-    <th>商品画像</tf>
-    <td>{{ $drink->img }}</td>
+    <th>商品画像</th>
+    <td>
+    @if($drink->img)
+      <img src="{{asset('./storage/images/'.$drink->img)}}" width='30' height='60'/>
+    @endif
+    </td>
   </tr>
   <tr>
     <th>商品名</tf>

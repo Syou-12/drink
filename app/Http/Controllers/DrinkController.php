@@ -11,17 +11,29 @@ use App\Models\Post;
 
 class DrinkController extends Controller
 {
-    public function showList()
+    public function index(Request $request, Drink $drink)
     {
         $model = new Drink();
         $drinks = $model->getList();
 
-       return view('home', ['drinks' => $drinks]);
+        $keyword = $request->input('keyword');
+
+        $query = Drink::query();
+ 
+        if(!empty($keyword)) {
+             $query->where('name', 'LIKE', "%{$keyword}%")
+               ->orWhere('name', 'LIKE', "%{$keyword}%");
+        }
+ 
+       $drinks = $query->get();
+ 
+
+       return view('home', ['drinks' => $drinks] , compact('drink', 'keyword'));
     }
 
 
     public function create() {
-        return view('create');
+        return view('create_view');
     }
 
     public function store(DrinkRequest $request) {
@@ -35,9 +47,16 @@ class DrinkController extends Controller
         $drink->maker = $request->input(["maker"]);
         $drink->coment = $request->input(["coment"]);
         $drink->timestamps = false;
+
+        if(request('img')) {
+            $name=request()->file('img')->getClientOriginalName();
+            $file=request()->file('img')->move('storage/images',$name);
+            $drink->img=$name;
+        }
+
         $drink->save();
 
-        return redirect()->route('create');
+        return redirect()->route('create_view');
     }
 
      
@@ -50,7 +69,7 @@ class DrinkController extends Controller
     {
         $drink = Drink::find($id);
 
-        return view('drink.detail', ['drink' =>  $drink]);
+        return view('drink.detail_view', ['drink' =>  $drink]);
     }
 
      /**
@@ -62,7 +81,7 @@ class DrinkController extends Controller
     {
         $drink = Drink::find($id);
 
-        return view('drink.edit', ['drink' =>  $drink]);
+        return view('drink.edit_view', ['drink' =>  $drink]);
     }
 
 
@@ -78,9 +97,15 @@ class DrinkController extends Controller
         $drink->maker = $request->input(["maker"]);
         $drink->coment = $request->input(["coment"]);
         $drink->timestamps = false;
+
+        if(request('img')) {
+            $name=request()->file('img')->getClientOriginalName();
+            $file=request()->file('img')->move('storage/images',$name);
+            $drink->img=$name;
+        }
+
         $drink->save();
         
-           
             return redirect()->route('home');
            
     }
@@ -93,6 +118,5 @@ class DrinkController extends Controller
 
         return redirect()->route('home');
     }
-
 
 }

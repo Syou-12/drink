@@ -1,0 +1,43 @@
+@charset "UFT-8";
+
+.main {
+    padding-left: 20%;
+}
+
+.key {
+    align-items: center;
+}
+
+td {
+    padding-top: 30px;
+    padding-right: 20px;
+}
+
+img {
+    width: 40px;
+    height: 60px;
+}
+
+.top {
+ padding-right: 15px;
+}
+
+.top-a {
+    padding-right: 20px;
+}
+
+.top-b {
+    padding-right: 30px;
+}
+
+.menu {
+    margin-bottom: 50px;
+}
+
+.menu-btn {
+    border: 1px solid 1px;
+    border-radius: 5px;
+    padding: 5px 10px;
+    background-color: red;
+}
+

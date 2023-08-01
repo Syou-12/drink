@@ -44,4 +44,6 @@ class Drink extends Model
     }
 
      public $timestamps = false;
+
+   
 }

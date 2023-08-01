@@ -1,24 +1,50 @@
-<div class="links">
-  <table style="margin-left: 80px">
-     <thead style="background: #00ff00;" >
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ asset('../css/style.css')  }}" >
+  <title>Document</title>
+</head>
+<body>
+@extends('layouts.app')
+
+@section('title', '一覧画面')
+
+@section('content')
+
+<div class="kensaku">
+  <form action="{{ route('home') }}" method="GET">
+    <input type="text" name="keyword" value="{{ $keyword }}">
+    <input type="submit" value="検索">
+  </form>
+</div>
+
+<div class="links list">
+  <table>
+     <thead>
         <tr>
-            <th style="padding-right: 15px;">ID</th>
-            <th style="padding-right: 15px;">商品画像</th>
-            <th style="padding-right: 20px;">商品名</th>
-            <th style="padding-right: 20px;">価格</th>
-            <th style="padding-right: 20px;">在庫数</th>
-            <th style="padding-right: 15px;">メーカー名</th>
+            <th class="top">ID</th>
+            <th  class="top">画像</th>
+            <th class="top-a">商品名</th>
+            <th class="top-a">価格</th>
+            <th class="top-a">在庫数</th>
+            <th class="top">メーカー名</th>
             <th><button type="button" class="btn btn-primary"  onclick="location.href='create'">新規登録</button></th>
         </tr>
     </thead>
     @foreach ($drinks as $drink)
-        <tr style="border: 1px solid #000;">
-            <td style="text-align:left">{{ $drink->id }}</td>
-            <td style="text-align:left">{{ $drink->img }}</td>
+        <tr>
+            <td >{{ $drink->id }}</td>
+            <td>
+            @if($drink->img)
+            <img src="{{asset('./storage/images/'.$drink->img)}}" width='30' height='60'/>
+            @endif
+             </td>
             <td>{{ $drink->name }}</td>
-            <td style="text-align:left">{{ $drink->kakaku }}円</td>
-            <td style="text-align:left">{{ $drink->zaiko }}個</td>
-            <td style="text-align:left">{{ $drink->maker }}</td>
+            <td >{{ $drink->kakaku }}円</td>
+            <td>{{ $drink->zaiko }}個</td>
+            <td >{{ $drink->maker }}</td>
             <td><button type="button" class="btn btn-primary"  onclick="location.href='/drink/{{ $drink->id }}'">詳細</button></td>
             <td>
             <form action="{{ route('drink.delete',$drink->id)}}" method=”POST”>
@@ -31,6 +57,11 @@
         @endforeach
   </table>
  
-  
 </div>
+@endsection
+
+</body>
+</html>
+
+
 
