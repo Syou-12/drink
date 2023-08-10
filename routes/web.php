@@ -19,9 +19,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\DrinkController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\ProductController::class, 'index'])->name('home');
 Route::get('/create',[App\Http\Controllers\DrinkController::class, 'create'])->name('create');
-Route::post('drinks/store', [App\Http\Controllers\DrinkController::class, 'store'])->name('store');
+Route::post('/store', [App\Http\Controllers\DrinkController::class, 'store'])->name('store');
 Route::get('/drink/{id}', 'App\Http\Controllers\DrinkController@showDetail')->name('show');
 Route::get('/drink/edit/{id}', 'App\Http\Controllers\DrinkController@showEdit')->name('edit');
 Route::get('/update/{id}', [App\Http\Controllers\DrinkController::class, 'update'])->name('drink.update');

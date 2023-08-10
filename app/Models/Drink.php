@@ -10,12 +10,19 @@ class Drink extends Model
 {
     use HasFactory;
 
+      /**
+     * モデルに関連付けるテーブル名
+     * 
+     * @var string
+     */
+    protected $table = 'drinks';
+
     public function post(){
         return $this->belongsTo('App\Models\Post');
     }
 
     public function getList() {
-        // articlesテーブルからデータを取得
+        
         $drinks = DB::table('drinks')->get();
    
         return $drinks;

@@ -13,12 +13,7 @@
 
 @section('content')
 
-<div class="kensaku">
-  <form action="{{ route('home') }}" method="GET">
-    <input type="text" name="keyword" value="{{ $keyword }}">
-    <input type="submit" value="検索">
-  </form>
-</div>
+
 
 <div class="links list">
   <table>
@@ -33,19 +28,19 @@
             <th><button type="button" class="btn btn-primary"  onclick="location.href='create'">新規登録</button></th>
         </tr>
     </thead>
-    @foreach ($drinks as $drink)
+    @foreach ($products as $product)
         <tr>
-            <td >{{ $drink->id }}</td>
+            <td>{{ $products->id }}</td>
             <td>
-            @if($drink->img)
-            <img src="{{asset('./storage/images/'.$drink->img)}}" width='30' height='60'/>
+            @if($product->img_path)
+            <img src="{{asset('./storage/images/'.$product->img_path)}}" width='30' height='60'/>
             @endif
              </td>
-            <td>{{ $drink->name }}</td>
-            <td >{{ $drink->kakaku }}円</td>
-            <td>{{ $drink->zaiko }}個</td>
-            <td >{{ $drink->maker }}</td>
-            <td><button type="button" class="btn btn-primary"  onclick="location.href='/drink/{{ $drink->id }}'">詳細</button></td>
+             <td>{{ $product->product_name }}</td>
+            <td >{{ $product->price }}円</td>
+            <td>{{ $product->stock }}個</td>
+            <td >{{ $product->maker_name }}</td>
+            <td><button type="button" class="btn btn-primary"  onclick="location.href='/product/{{  $product->company_id }}'">詳細</button></td>
             <td>
             <form action="{{ route('drink.delete',$drink->id)}}" method=”POST”>
             @csrf

@@ -14,7 +14,7 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <h1>Post Form</h1>
+            <h1>新規登録画面</h1>
             <form action="{{ route('store') }}" method="post" action="/store" enctype="multipart/form-data" >
                 @csrf
 

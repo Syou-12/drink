@@ -44,7 +44,7 @@
     <td>{{ $drink->zaiko }}</td>
   </tr>
   <tr>
-    <th>メーカー</tf>
+    <th>メーカー名</tf>
     <td>{{ $drink->maker }}</td>
   </tr>
   <td><button type="button" class="btn btn-primary"  onclick="location.href='/drink/edit/{{ $drink->id }}'">編集</td>

@@ -6,29 +6,17 @@ use App\Http\Requests\DrinkRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Drink;
-use App\Models\Post;
+use App\Models\Product;
 
 
 class DrinkController extends Controller
 {
-    public function index(Request $request, Drink $drink)
+    public function index(Request $request)
     {
-        $model = new Drink();
-        $drinks = $model->getList();
+       $model = new Product;
+       $products = $model->getlist();
 
-        $keyword = $request->input('keyword');
-
-        $query = Drink::query();
- 
-        if(!empty($keyword)) {
-             $query->where('name', 'LIKE', "%{$keyword}%")
-               ->orWhere('name', 'LIKE', "%{$keyword}%");
-        }
- 
-       $drinks = $query->get();
- 
-
-       return view('home', ['drinks' => $drinks] , compact('drink', 'keyword'));
+       return view('home', compact('products'));
     }
 
 
@@ -69,7 +57,7 @@ class DrinkController extends Controller
     {
         $drink = Drink::find($id);
 
-        return view('drink.detail_view', ['drink' =>  $drink]);
+        return view('detail_view', ['drink' =>  $drink]);
     }
 
      /**
@@ -81,7 +69,7 @@ class DrinkController extends Controller
     {
         $drink = Drink::find($id);
 
-        return view('drink.edit_view', ['drink' =>  $drink]);
+        return view('edit_view', ['drink' =>  $drink]);
     }
 
 
