@@ -20,14 +20,14 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\ProductController::class, 'index'])->name('home');
-Route::get('/create',[App\Http\Controllers\DrinkController::class, 'create'])->name('create');
-Route::post('/store', [App\Http\Controllers\DrinkController::class, 'store'])->name('store');
-Route::get('/drink/{id}', 'App\Http\Controllers\DrinkController@showDetail')->name('show');
-Route::get('/drink/edit/{id}', 'App\Http\Controllers\DrinkController@showEdit')->name('edit');
-Route::get('/update/{id}', [App\Http\Controllers\DrinkController::class, 'update'])->name('drink.update');
-Route::post('/update/{id}', [App\Http\Controllers\DrinkController::class, 'update'])->name('drink.update');
-Route::get('/destroy{drink}', [App\Http\Controllers\DrinkController::class, 'destroy'])->name('drink.destroy');
-Route::get('/destroy{id}', [App\Http\Controllers\DrinkController::class, 'destroy'])->name('drink.delete');
+Route::get('/create',[App\Http\Controllers\ProductController::class, 'create'])->name('create');
+Route::post('/store', [App\Http\Controllers\ProductController::class, 'store'])->name('store');
+Route::get('/product/{id}', [App\Http\Controllers\ProductController::class,'showDetail'])->name('show');
+Route::get('/product/edit/{id}', [App\Http\Controllers\ProductController::class,'showEdit'])->name('edit');
+Route::get('/update/{id}', [App\Http\Controllers\ProductController::class, 'update'])->name('product.update');
+Route::post('/update/{id}', [App\Http\Controllers\ProductController::class, 'update'])->name('product.update');
+Route::get('/destroy{product}', [App\Http\Controllers\ProductController::class, 'destroy'])->name('product.destroy');
+Route::get('/destroy{id}', [App\Http\Controllers\ProductController::class, 'destroy'])->name('product.delete');
 
 
 

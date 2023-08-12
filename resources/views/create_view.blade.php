@@ -18,48 +18,48 @@
             <form action="{{ route('store') }}" method="post" action="/store" enctype="multipart/form-data" >
                 @csrf
 
-                <div class="form-group menu">
+                <div class="form-group menu" >
                     <label for="title">商品画像</label>
-                    <input type="file" class="form-control" id="img" name="img" placeholder="商品画像">
+                    <input type="file" class="form-control" id="img_path" name="img_path" placeholder="商品画像">
                 </div>
 
                 <div class="form-group  menu">
                     <label for="title">商品名</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="商品名" value="{{ old('name') }}">
-                    @if($errors->has('name'))
-                        <p>{{ $errors->first('name') }}</p>
+                    <input type="text" class="form-control" id="product_name" name="product_name" placeholder="商品名" value="{{ old('product_name') }}">
+                    @if($errors->has('product_name'))
+                        <p>{{ $errors->first('product_name') }}</p>
                     @endif
                 </div>
 
                 <div class="form-group menu">
                     <label for="title">価格</label>
-                    <input type="text" class="form-control" id="kakaku" name="kakaku" placeholder="価格" value="{{ old('kakaku') }}">
-                    @if($errors->has('kakaku'))
-                        <p>{{ $errors->first('kakaku') }}</p>
+                    <input type="text" class="form-control" id="price" name="price" placeholder="価格" value="{{ old('price') }}">
+                    @if($errors->has('price'))
+                        <p>{{ $errors->first('price') }}</p>
                     @endif
                 </div>
 
                 <div class="form-group  menu">
                     <label for="title">在庫数</label>
-                    <input type="text" class="form-control" id="zaiko" name="zaiko" placeholder="在庫数" value="{{ old('zaiko') }}">
-                    @if($errors->has('zaiko'))
-                        <p>{{ $errors->first('zaiko') }}</p>
+                    <input type="text" class="form-control" id="stock" name="stock" placeholder="在庫数" value="{{ old('stock') }}">
+                    @if($errors->has('stock'))
+                        <p>{{ $errors->first('stock') }}</p>
                     @endif
                 </div>
 
                 <div class="form-group  menu">
                     <label for="title">メーカー名</label>
-                    <input type="text" class="form-control" id="maker" name="maker" placeholder="メーカー名" value="{{ old('maker') }}">
-                    @if($errors->has('name'))
-                        <p>{{ $errors->first('name') }}</p>
+                    <input type="text" class="form-control" id="maker_name" name="maker_name" placeholder="メーカー名" value="{{ old('maker_name') }}">
+                    @if($errors->has('maker_name'))
+                        <p>{{ $errors->first('maker_name') }}</p>
                     @endif
                 </div>
 
                 <div class="form-group  menu">
                     <label for="title">コメント</label>
-                    <input type="text" class="form-control" id="coment" name="coment" placeholder="コメント" value="{{ old('maker') }}">
-                    @if($errors->has('coment'))
-                        <p>{{ $errors->first('coment') }}</p>
+                    <input type="text" class="form-control" id="comment" name="comment" placeholder="コメント" value="{{ old('comment') }}">
+                    @if($errors->has('comment'))
+                        <p>{{ $errors->first('comment') }}</p>
                     @endif
                 </div>
 

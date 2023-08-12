@@ -21,33 +21,33 @@
 <table style = "margin-left: 42%;">
   <tr>
     <th>ID</tf>
-    <td>{{ $drink->id }}</td>
+    <td>{{ $product->company_id }}</td>
   </tr>
   <tr>
     <th>商品画像</th>
     <td>
-    @if($drink->img)
-      <img src="{{asset('./storage/images/'.$drink->img)}}" width='30' height='60'/>
+    @if($product->img_path)
+      <img src="{{asset('./storage/images/'.$product->img_path)}}" width='30' height='60'/>
     @endif
     </td>
   </tr>
   <tr>
     <th>商品名</tf>
-    <td>{{ $drink->name }}</td>
+    <td>{{ $product->product_name }}</td>
   </tr>
   <tr>
     <th>価格</tf>
-    <td>{{ $drink->kakaku }}</td>
+    <td>{{ $product->price }}</td>
   </tr>
   <tr>
     <th>在庫数</tf>
-    <td>{{ $drink->zaiko }}</td>
+    <td>{{ $product->stock }}</td>
   </tr>
   <tr>
     <th>メーカー名</tf>
-    <td>{{ $drink->maker }}</td>
+    <td>{{ $product->maker_name }}</td>
   </tr>
-  <td><button type="button" class="btn btn-primary"  onclick="location.href='/drink/edit/{{ $drink->id }}'">編集</td>
+  <td><button type="button" class="btn btn-primary"  onclick="location.href='/product/edit/{{ $product->id }}'">編集</td>
   <td><button type="button" class="btn btn-primary"  onclick="location.href='/home'">戻る</td>
 </table>
 
