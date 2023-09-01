@@ -11,7 +11,9 @@ class ProductController extends Controller
 {
     public function index (Request $request)
     {
-        $products = Product::all();
+        $model = new Product;
+        $products=$model->getlist($request);
+        //$products = Product::all();
         return view('home', ['products'=>$products]);
     } 
 
@@ -26,7 +28,7 @@ class ProductController extends Controller
         $products->product_name = $request->input(["product_name"]);
         $products->price = $request->input(["price"]);
         $products->stock = $request->input(["stock"]);
-        $products->maker_name = $request->input(["maker_name"]);
+        $products->company_name = $request->input(["company_name"]);
         $products->comment = $request->input(["comment"]);
         $products->timestamps = false;
 
@@ -83,7 +85,7 @@ class ProductController extends Controller
         $products->product_name = $request->input(["product_name"]);
         $products->price = $request->input(["price"]);
         $products->stock = $request->input(["stock"]);
-        $products->maker_name = $request->input(["maker_name"]);
+        $products->company_name = $request->input(["company_name"]);
         $products->comment = $request->input(["comment"]);
         $products->timestamps = false;
 

@@ -45,7 +45,7 @@
   </tr>
   <tr>
     <th>メーカー名</tf>
-    <td>{{ $product->maker_name }}</td>
+    <td>{{ $product->company_name }}</td>
   </tr>
   <td><button type="button" class="btn btn-primary"  onclick="location.href='/product/edit/{{ $product->id }}'">編集</td>
   <td><button type="button" class="btn btn-primary"  onclick="location.href='/home'">戻る</td>

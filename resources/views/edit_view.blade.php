@@ -55,7 +55,7 @@
 
                 <div class="form-group menu" >
                     <label for="title">メーカー名</label>
-                    <input type="text" class="form-control" id="maker" name="maker" placeholder="メーカー名" value="{{ $product->maker_name }}">
+                    <input type="text" class="form-control" id="maker" name="maker" placeholder="メーカー名" value="{{ $product->company_name }}">
                     @if($errors->has('maker'))
                         <p>{{ $errors->first('maker') }}</p>
                     @endif

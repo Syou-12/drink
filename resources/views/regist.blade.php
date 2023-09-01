@@ -29,7 +29,7 @@
 
                 <div class="form-group" style="margin-bottom:50px;">
                     <label for="title">メーカー名</label>
-                    <input type="text" class="form-control" id="maker" name="maker" placeholder="メーカー名" value="{{ old('maker_name') }}">
+                    <input type="text" class="form-control" id="maker" name="maker" placeholder="メーカー名" value="{{ old('company_name') }}">
                 </div>
 
               

@@ -49,7 +49,7 @@
 
                 <div class="form-group  menu">
                     <label for="title">メーカー名</label>
-                    <input type="text" class="form-control" id="maker_name" name="maker_name" placeholder="メーカー名" value="{{ old('maker_name') }}">
+                    <input type="text" class="form-control" id="maker_name" name="maker_name" placeholder="メーカー名" value="{{ old('company_name') }}">
                     @if($errors->has('maker_name'))
                         <p>{{ $errors->first('maker_name') }}</p>
                     @endif

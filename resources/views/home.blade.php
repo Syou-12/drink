@@ -38,7 +38,7 @@
     </thead>
     @foreach ($products as $product)
         <tr>
-            <td>{{ $product->company_id }}</td>
+            <td>{{ $product->id }}</td>
             <td>
             @if($product->img_path)
             <img src="{{asset('./storage/images/'.$product->img_path)}}" width='30' height='60'/>
@@ -47,7 +47,7 @@
              <td>{{ $product->product_name }}</td>
             <td >{{ $product->price }}円</td>
             <td>{{ $product->stock }}個</td>
-            <td >{{ $product->maker_name }}</td>
+            <td >{{ $product->company_name }}</td>
             <td><button type="button" class="btn btn-primary"  onclick="location.href='/product/{{  $product->id }}'">詳細</button></td>
             <td>
             <form action="{{ route('product.delete',$product->company_id)}}" method=”POST”>
