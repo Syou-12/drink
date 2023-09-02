@@ -22,25 +22,36 @@ class ProductController extends Controller
     }
 
     public function store(Request $request) {
+        
+        $model = new Product;
+        $products = Product::find($request->id);
 
-        $products = new Product;
-        $products->company_id = $request->input(["company_id"]);
-        $products->product_name = $request->input(["product_name"]);
-        $products->price = $request->input(["price"]);
-        $products->stock = $request->input(["stock"]);
-        $products->company_name = $request->input(["company_name"]);
-        $products->comment = $request->input(["comment"]);
-        $products->timestamps = false;
-
-        if(request('img')) {
-            $name=request()->file('img')->getClientOriginalName();
-            $file=request()->file('img')->move('storage/images',$name);
-            $products->img=$name;
+        DB::beginTransaction();
+        try {
+            $model->fill($request->all())->save();
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
         }
 
-        $products->save();
+        //$products = new Product;
+       // $products->company_id = $request->input(["company_id"]);
+       // $products->product_name = $request->input(["product_name"]);
+       // $products->price = $request->input(["price"]);
+       // $products->stock = $request->input(["stock"]);
+       // $products->company_name = $request->input(["company_name"]);
+       // $products->comment = $request->input(["comment"]);
+       // $products->timestamps = false;
 
-        return redirect()->route('create_view');
+       // if(request('img')) {
+           // $name=request()->file('img')->getClientOriginalName();
+           // $file=request()->file('img')->move('storage/images',$name);
+          //  $products->img=$name;
+    //    }
+
+        //$products->save();
+
+        return redirect()->route('create');
     }
 
     /**
