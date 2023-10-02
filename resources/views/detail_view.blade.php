@@ -21,7 +21,7 @@
 <table style = "margin-left: 42%;">
   <tr>
     <th>ID</tf>
-    <td>{{ $product->company_id }}</td>
+    <td>{{ $product->id }}</td>
   </tr>
   <tr>
     <th>商品画像</th>

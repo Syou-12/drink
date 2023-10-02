@@ -17,12 +17,12 @@
             <h1>新規登録画面</h1>
             <form action="{{ route('store') }}" method="post" action="/store" enctype="multipart/form-data" >
                 @csrf
-                <!--
+               
                 <div class="form-group menu" >
                     <label for="title">商品画像</label>
                     <input type="file" class="form-control" id="img_path" name="img_path" placeholder="商品画像">
                 </div>
-                -->
+                
 
                 <div class="form-group  menu">
                     <label for="title">商品名</label>
@@ -50,9 +50,13 @@
 
                 <div class="form-group  menu">
                     <label for="title">メーカー名</label>
-                    <input type="text" class="form-control" id="maker_name" name="maker_name" placeholder="メーカー名" value="{{ old('company_name') }}">
-                    @if($errors->has('maker_name'))
-                        <p>{{ $errors->first('maker_name') }}</p>
+                   <select name="company_name" id="company_name" class="form-control">
+                    @foreach($companies as $company)
+                    <option value="{{$company -> id}}">{{$company -> company_name}}</option>
+                    @endforeach
+                   </select>
+                    @if($errors->has('company_name'))
+                        <p>{{ $errors->first('company_name') }}</p>
                     @endif
                 </div>
 

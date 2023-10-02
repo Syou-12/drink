@@ -18,38 +18,24 @@ class ProductController extends Controller
     } 
 
     public function create() {
-        return view('create_view');
+        $companies = DB::table('companies')->get();
+        return view('create_view', ['companies'=>$companies]);
     }
 
-    public function store(Request $request) {
+    public function store(DrinkRequest $request) {
         
         $model = new Product;
-        $products = Product::find($request->id);
+       
 
         DB::beginTransaction();
         try {
-            $model->fill($request->all())->save();
+            $model->InsertProduct($request)->save();
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
         }
 
-        //$products = new Product;
-       // $products->company_id = $request->input(["company_id"]);
-       // $products->product_name = $request->input(["product_name"]);
-       // $products->price = $request->input(["price"]);
-       // $products->stock = $request->input(["stock"]);
-       // $products->company_name = $request->input(["company_name"]);
-       // $products->comment = $request->input(["comment"]);
-       // $products->timestamps = false;
-
-       // if(request('img')) {
-           // $name=request()->file('img')->getClientOriginalName();
-           // $file=request()->file('img')->move('storage/images',$name);
-          //  $products->img=$name;
-    //    }
-
-        //$products->save();
+       
 
         return redirect()->route('create');
     }
@@ -59,11 +45,11 @@ class ProductController extends Controller
     * @return view
     */
 
-    public function showDetail($id)
+    public function showDetail(Request $request, $id)
     {
         $products = Product::find($id);
-
-        return view('detail_view', ['product' =>  $products]);
+        $product= $products->getdetail($id);
+        return view('detail_view', ['product' =>  $product]);
     }
 
      /**
@@ -87,31 +73,45 @@ class ProductController extends Controller
         return redirect()->route('home');
     }
 
-    public function Update(Request $request, $id)
+    public function Update(DrinkRequest $request, $id)
     {
-        
-        $products = Product::find($id);
+        $companies = DB::table('companies')->get();
+        $model = new Product;
+       
 
-        $products->company_id = $request->input(["company_id"]);
-        $products->product_name = $request->input(["product_name"]);
-        $products->price = $request->input(["price"]);
-        $products->stock = $request->input(["stock"]);
-        $products->company_name = $request->input(["company_name"]);
-        $products->comment = $request->input(["comment"]);
-        $products->timestamps = false;
-
-        if(request('img')) {
-            $name=request()->file('img')->getClientOriginalName();
-            $file=request()->file('img')->move('storage/images',$name);
-            $products->img=$name;
+        DB::beginTransaction();
+        try {
+            $model->updateProduct($request)->save();
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
         }
-
-        $products->save();
+       
 
         
-            return redirect()->route('home');
+        return view('home', ['companies'=>$companies]);
            
     }
 }
 
 
+
+// updateの中身 //
+
+//$products = Product::find($id);
+
+//$products->company_id = $request->input(["company_id"]);
+//$products->product_name = $request->input(["product_name"]);
+//$products->price = $request->input(["price"]);
+//$products->stock = $request->input(["stock"]);
+//$products->company_name = $request->input(["company_name"]);
+//$products->comment = $request->input(["comment"]);
+//$products->timestamps = false;
+
+//if(request('img')) {
+    //$name=request()->file('img')->getClientOriginalName();
+   // $file=request()->file('img')->move('storage/images',$name);
+   // $products->img=$name;
+//}
+
+//$products->save();

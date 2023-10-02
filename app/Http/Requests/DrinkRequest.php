@@ -22,21 +22,22 @@ class DrinkRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required | max:200',
-            'maker' => 'required | max:200',
-            'kakaku' => 'required | max:200',
-            'zaiko' => 'required | max:200',
-            'coment' => 'required | max:1000',
+            'product_name' => 'required | max:200',
+            'company_name' => 'required | max:200',
+            'price' => 'required | max:200',
+            'stock' => 'required | max:200',
+            'comment' => 'required | max:1000',
         ];
     }
 
     public function attributes()
 {
     return [
-        'name' => '商品名',
-        'kakaku' => '価格',
-        'zaiko' => '在庫数',
-        'maker' => 'メーカー名',
+        'product_name' => '商品名',
+        'price' => '価格',
+        'stock' => '在庫数',
+        'company_name' => 'メーカー名',
+        'comment' => 'コメント',
     ];
 }
 
@@ -47,16 +48,16 @@ class DrinkRequest extends FormRequest
  */
 public function messages() {
     return [
-        'name.required' => ':attributeは必須項目です。',
-        'name.max' => ':attributeは:max字以内で入力してください。',
-        'kakaku.required' => ':attributeは必須項目です。',
-        'kakaku.max' => ':attributeは:max字以内で入力してください。',
-        'zaiko.required' => ':attributeは必須項目です。',
-        'zaiko.max' => ':attributeは:max字以内で入力してください。',
-        'maker.required' => ':attributeは必須項目です。',
-        'maker.max' => ':attributeは:max字以内で入力してください。',
-        'coment.required' => ':attributeは必須項目です。',
-        'coment.max' => ':attributeは:max字以内で入力してください。',
+        'product_name.required' => ':attributeは必須項目です。',
+        'product_name.max' => ':attributeは:max字以内で入力してください。',
+        'price.required' => ':attributeは必須項目です。',
+        'price.max' => ':attributeは:max字以内で入力してください。',
+        'stock.required' => ':attributeは必須項目です。',
+        'stock.max' => ':attributeは:max字以内で入力してください。',
+        'company_name.required' => ':attributeは必須項目です。',
+        'company_name.max' => ':attributeは:max字以内で入力してください。',
+        'comment.required' => ':attributeは必須項目です。',
+        'comment.max' => ':attributeは:max字以内で入力してください。',
     ];
 }
 }
