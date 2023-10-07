@@ -21,6 +21,21 @@
     <input type="text" name="keyword">
     <input type="submit" value="検索">
 
+       <!--プルダウンカテゴリ選択  ※修正必須-->
+       <div class="form-group row">
+              <label>商品カテゴリ</label>
+              <div class="col-sm-3">
+                <select name="categoryId" class="form-control" value="{{ $company -> id }}">
+                  <option value="">未選択</option>
+
+                  @foreach($companies as $company)
+                  <option value="{{ $id }}">
+                    {{ $company_name }}
+                  </option>  
+                  @endforeach
+                </select>
+              </div>
+            </div>
     
   </form>
 </div>

@@ -53,15 +53,11 @@
                     @endif
                 </div>
 
-                <div class="form-group  menu">
-                    <label for="title">メーカー名</label>
-                   <select name="company_name" id="company_name" class="form-control">
-                    @foreach($companies as $company)
-                    <option value="{{$company -> id}}">{{$company -> company_name}}</option>
-                    @endforeach
-                   </select>
-                    @if($errors->has('company_name'))
-                        <p>{{ $errors->first('company_name') }}</p>
+                <<div class="form-group  menu">
+                    <label for="title">在庫数</label>
+                    <input type="text" class="form-control" id="stock" name="stock" placeholder="在庫数" value="{{ old('stock') }}">
+                    @if($errors->has('stock'))
+                        <p>{{ $errors->first('stock') }}</p>
                     @endif
                 </div>
 

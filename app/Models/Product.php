@@ -71,7 +71,7 @@ class Product extends Model
          ]);
            if(request('img_path')) {
             $name=request()->file('img_path')->getClientOriginalName();
-            $file=request()->file('img_path')->move('storage/images',$name);
+            $file=request()->file('img_path')->move('storage/images',$dir);
             $products->img=$name;
             }
      }

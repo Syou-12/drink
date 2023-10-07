@@ -11,6 +11,7 @@ class ProductController extends Controller
 {
     public function index (Request $request)
     {
+        
         $model = new Product;
         $products=$model->getlist($request);
         //$products = Product::all();
@@ -76,7 +77,7 @@ class ProductController extends Controller
     public function Update(DrinkRequest $request, $id)
     {
         $companies = DB::table('companies')->get();
-        $model = new Product;
+        $products = Product::find($id);
        
 
         DB::beginTransaction();
@@ -93,6 +94,7 @@ class ProductController extends Controller
            
     }
 }
+
 
 
 
