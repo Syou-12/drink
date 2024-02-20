@@ -13,9 +13,10 @@ class ProductController extends Controller
     {
         
         $model = new Product;
+        $companies = DB::table('companies')->get();
         $products=$model->getlist($request);
         //$products = Product::all();
-        return view('home', ['products'=>$products]);
+        return view('home', ['products'=>$products , 'companies' => $companies]);
     } 
 
     public function create() {
@@ -27,10 +28,16 @@ class ProductController extends Controller
         
         $model = new Product;
        
+        $image = $request->file('img_path');
+        $file_name = $image->getClientOriginalName();
+        $image->storeAs('public/images', $file_name);
+        $img_path = 'storage/images/' . $file_name;
+      
+
 
         DB::beginTransaction();
         try {
-            $model->InsertProduct($request)->save();
+            $model->InsertProduct($request , $img_path)->save();
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
@@ -61,8 +68,9 @@ class ProductController extends Controller
     public function showEdit($id)
     {
         $products = Product::find($id);
+        $companies = DB::table('companies')->get();
 
-        return view('edit_view', ['product' =>  $products]);
+        return view('edit_view', ['product' =>  $products, 'companies' => $companies]);
     }
 
     public function destroy($id)
@@ -76,13 +84,15 @@ class ProductController extends Controller
 
     public function Update(DrinkRequest $request, $id)
     {
+        
         $companies = DB::table('companies')->get();
         $products = Product::find($id);
+        
        
 
         DB::beginTransaction();
         try {
-            $model->updateProduct($request)->save();
+            $model->updateProduct($request, $products)->save();
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
@@ -90,7 +100,7 @@ class ProductController extends Controller
        
 
         
-        return view('home', ['companies'=>$companies]);
+        return view('home', [ 'products'=>$products , 'companies'=>$companies ]);
            
     }
 }

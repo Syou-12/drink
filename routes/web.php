@@ -28,6 +28,7 @@ Route::get('/update/{id}', [App\Http\Controllers\ProductController::class, 'upda
 Route::post('/update/{id}', [App\Http\Controllers\ProductController::class, 'update'])->name('product.update');
 Route::get('/destroy{product}', [App\Http\Controllers\ProductController::class, 'destroy'])->name('product.destroy');
 Route::get('/destroy{id}', [App\Http\Controllers\ProductController::class, 'destroy'])->name('product.delete');
+Route::POST('/regist', [ArticleController::class, 'regist'])->name('regist');
 
 
 

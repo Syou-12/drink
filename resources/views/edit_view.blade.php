@@ -21,7 +21,7 @@
 
                 <div class="form-group menu" >
                     <label for="title">ID</label>
-                    <label for="title" style="font-size: 15px;">{{ $product->company_id }}</h2>
+                    <label for="title" style="font-size: 15px;">{{ $product->id }}</h2>
                 </div>
 
                 <div class="form-group menu" >
@@ -31,9 +31,9 @@
 
                 <div class="form-group menu" >
                     <label for="name">商品名</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="商品名" value="{{ $product->product_name }}">
-                    @if($errors->has('name'))
-                        <p>{{ $errors->first('name') }}</p>
+                    <input type="text" class="form-control" id="name" name="product_name" placeholder="商品名" value="{{ $product->product_name }}">
+                    @if($errors->has('product_name'))
+                        <p>{{ $errors->first('product_name') }}</p>
                     @endif
                 </div>
 
@@ -45,15 +45,7 @@
                     @endif
                 </div>
 
-                <div class="form-group menu">
-                    <label for="title">在庫数</label>
-                    <input type="text" class="form-control" id="zaiko" name="zaiko" placeholder="在庫数" value="{{ $product->stock }}">
-                    @if($errors->has('zaiko'))
-                        <p>{{ $errors->first('zaiko') }}</p>
-                    @endif
-                </div>
-
-                <<div class="form-group  menu">
+                <div class="form-group  menu">
                     <label for="title">在庫数</label>
                     <input type="text" class="form-control" id="stock" name="stock" placeholder="在庫数" value="{{ old('stock') }}">
                     @if($errors->has('stock'))
@@ -61,11 +53,23 @@
                     @endif
                 </div>
 
+                <div class="form-group  menu">
+                    <label for="title">メーカー名</label>
+                   <select name="company_name" id="company_name" class="form-control">
+                    @foreach($companies as $company)
+                    <option value="{{$company -> id}}">{{$company -> company_name}}</option>
+                    @endforeach
+                   </select>
+                    @if($errors->has('company_name'))
+                        <p>{{ $errors->first('company_name') }}</p>
+                    @endif
+                </div>
+
                 <div class="form-group menu">
                     <label for="title">コメント</label>
-                    <input type="text" class="form-control" id="coment" name="coment" placeholder="コメント" value="{{ $product->comment }}">
-                    @if($errors->has('coment'))
-                        <p>{{ $errors->first('coment') }}</p>
+                    <input type="text" class="form-control" id="comment" name="comment" placeholder="コメント" value="{{ $product->comment }}">
+                    @if($errors->has('comment'))
+                        <p>{{ $errors->first('comment') }}</p>
                     @endif
                 </div>
 

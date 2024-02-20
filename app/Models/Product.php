@@ -16,7 +16,7 @@ class Product extends Model
     public function getlist($request){
 
         $keyword = $request->input('keyword');
-        $company = $request->input('company');
+        $company = $request->input('company_name');
 
 
         $query = DB::table('products')
@@ -59,21 +59,18 @@ class Product extends Model
          return Product::all();
      }
  
-     public function InsertProduct($request)
+     public function InsertProduct($request, $img_path)
      {
          
          return Product::create([
            'company_id' => $request->input('company_name'),
+           'img_path' => $img_path,
            'product_name' => $request->input('product_name'),
            'price' => $request->input('price'),
            'stock' => $request->input('stock'),
            'comment' => $request->input('comment'),
          ]);
-           if(request('img_path')) {
-            $name=request()->file('img_path')->getClientOriginalName();
-            $file=request()->file('img_path')->move('storage/images',$dir);
-            $products->img=$name;
-            }
+           
      }
 
 
@@ -95,7 +92,7 @@ class Product extends Model
      */
      public function updateProduct($request, $products)
      {
-
+       
         return Product::update([
             'company_id' => $request->input('company_name'),
             'product_name' => $request->input('product_name'),
@@ -103,12 +100,20 @@ class Product extends Model
             'stock' => $request->input('stock'),
             'comment' => $request->input('comment'),
           ]);
-            if(request('img_path')) {
-             $name=request()->file('img_path')->getClientOriginalName();
-             $file=request()->file('img_path')->move('storage/images',$name);
-             $products->img=$name;
-             }
+            //if(request('img_path')) {
+             //$name=request()->file('img_path')->getClientOriginalName();
+             //$file=request()->file('img_path')->move('storage/images',$name);
+            // $products->img=$name;
+            // }
 
+            $image = $request->file('img_path');
+            if($image){
+              $file_name = $image->getClientOriginalName();
+              $image->storeAs('public/images', $file_name);
+              $img_path = 'storage/images/' . $file_name;
+              $products->img_path=$img_path;
+            }
+           
          $result = $products->fill([
              'product_name' => $request->name
          ])->save();

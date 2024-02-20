@@ -27,7 +27,7 @@
     <th>商品画像</th>
     <td>
     @if($product->img_path)
-      <img src="{{asset('./storage/images/'.$product->img_path)}}" width='30' height='60'/>
+    <img src="{{asset($product-> img_path)}}" width='30' height='60'/>
     @endif
     </td>
   </tr>
