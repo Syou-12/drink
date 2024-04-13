@@ -90,43 +90,46 @@ class Product extends Model
       /**
      * 更新処理
      */
-     public function updateProduct($request, $products)
-     {
-       
-        return Product::update([
-            'company_id' => $request->input('company_name'),
-            'product_name' => $request->input('product_name'),
-            'price' => $request->input('price'),
-            'stock' => $request->input('stock'),
-            'comment' => $request->input('comment'),
-          ]);
-            //if(request('img_path')) {
-             //$name=request()->file('img_path')->getClientOriginalName();
-             //$file=request()->file('img_path')->move('storage/images',$name);
-            // $products->img=$name;
-            // }
-
-            $image = $request->file('img_path');
-            if($image){
-              $file_name = $image->getClientOriginalName();
-              $image->storeAs('public/images', $file_name);
-              $img_path = 'storage/images/' . $file_name;
-              $products->img_path=$img_path;
+    public function updateProduct($request, $product)
+    {
+        try {
+            // 更新する各フィールドの値を設定する
+            $product->company_id = $request->input('company_name');
+            $product->product_name = $request->input('product_name');
+            $product->price = $request->input('price');
+            $product->stock = $request->input('stock');
+            $product->comment = $request->input('comment');
+    
+            // 画像がアップロードされている場合は処理を行う
+            if ($request->hasFile('img_path')) {
+                $image = $request->file('img_path');
+                $file_name = $image->getClientOriginalName();
+                $image->storeAs('public/images', $file_name);
+                $img_path = 'storage/images/' . $file_name;
+                $product->img_path = $img_path;
             }
-           
-         $result = $products->fill([
-             'product_name' => $request->name
-         ])->save();
- 
-         return $result;
-     }
- 
-      public $timestamps = false;
-
+    
+            // モデルの変更をデータベースに保存する
+            $result = $product->save();
+    
+            return $result;
+        } catch (\Exception $e) {
+            // エラーハンドリング
+            return false;
+        }
+    }
 
 }
 
 
+
+
+
+ //if(request('img_path')) {
+             //$name=request()->file('img_path')->getClientOriginalName();
+             //$file=request()->file('img_path')->move('storage/images',$name);
+            // $products->img=$name;
+            // }
 
 
 

@@ -67,10 +67,11 @@ class ProductController extends Controller
 
     public function showEdit($id)
     {
-        $products = Product::find($id);
+        $model = new Product();
+        $product = $model->getdetail($id);
         $companies = DB::table('companies')->get();
 
-        return view('edit_view', ['product' =>  $products, 'companies' => $companies]);
+        return view('edit_view', ['product' =>  $product, 'companies' => $companies]);
     }
 
     public function destroy($id)
@@ -84,25 +85,26 @@ class ProductController extends Controller
 
     public function Update(DrinkRequest $request, $id)
     {
-        
         $companies = DB::table('companies')->get();
         $products = Product::find($id);
-        
-       
-
+    
+        if (!$products) {
+            // 商品が存在しない場合のエラーハンドリング
+            return redirect()->back()->with('error', '指定された商品が見つかりませんでした。');
+        }
+    
         DB::beginTransaction();
         try {
             $model->updateProduct($request, $products)->save();
             DB::commit();
         } catch (\Exception $e) {
             DB::rollback();
+            // エラーが発生した場合のエラーハンドリング
+            return redirect()->back()->with('error', '商品の更新中にエラーが発生しました。');
         }
-       
-
-        
-        return view('home', [ 'products'=>$products , 'companies'=>$companies ]);
-           
-    }
+    
+        return view('home', ['products' => $products, 'companies' => $companies]);
+}
 }
 
 
